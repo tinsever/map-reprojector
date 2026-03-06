@@ -1,0 +1,41 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "5100:5100"
+    volumes:
+      - ./Weltkarte.svg:/app/Weltkarte.svg:ro
+      - ./uploads:/app/uploads
+      - ./backend:/app  # Mount for development hot-reload
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=api_main.py
+      - FLASK_DEBUG=1
+      - CORS_ORIGINS=http://localhost:5173,http://localhost
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5100/api/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - carta-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - carta-network
+
+networks:
+  carta-network:
+    driver: bridge

@@ -1,0 +1,30 @@
+.DS_Store
+*.log
+*.pid
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Node / frontend build output
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+
+# Local runtime data
+uploads/
+tmp/
+*.sqlite3
+.env
+.env.*
+
+# IDEs
+.idea/
+.vscode/
