@@ -62,6 +62,23 @@ ns_files = api.namespace('files', description='File operations')
 VALID_ORIENTATIONS = ['normal', 'upside-down', 'mirrored', 'rotated-180']
 
 
+@app.route('/api/', methods=['GET'])
+def api_index():
+    return jsonify({
+        'service': 'CartA Map API',
+        'status': 'ok',
+        'docs_url': '/docs',
+        'openapi_url': '/swagger.json',
+        'endpoints': {
+            'health': '/api/health/',
+            'files': '/api/files/',
+            'reproject': '/api/reproject/',
+            'extract_corners': '/api/extract/corners',
+            'extract_center': '/api/extract/center',
+        },
+    }), 200
+
+
 def _parse_svg_length(value, fallback):
     if value is None:
         return fallback
