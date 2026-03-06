@@ -36,7 +36,7 @@ URLs:
 Build from the repository root:
 
 ```bash
-docker build -f backend/Dockerfile -t carta-api:latest backend
+docker build -f backend/Dockerfile -t carta-api:latest .
 ```
 
 ## License

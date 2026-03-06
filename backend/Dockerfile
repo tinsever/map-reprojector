@@ -23,8 +23,8 @@ EXPOSE 5100
 
 # Set environment variables
 ENV FLASK_APP=api_main.py
+ENV PYTHONPATH=/app/backend
 ENV PYTHONUNBUFFERED=1
 
 # Run the API with gunicorn production server
 CMD ["gunicorn", "--bind", "0.0.0.0:5100", "--workers", "2", "--timeout", "120", "--preload", "api_main:app"]
-

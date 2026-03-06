@@ -8,11 +8,12 @@ services:
     volumes:
       - ./Weltkarte.svg:/app/Weltkarte.svg:ro
       - ./uploads:/app/uploads
-      - ./backend:/app  # Mount for development hot-reload
+      - ./backend:/app/backend  # Mount backend in place so imports match production
     environment:
       - FLASK_ENV=development
       - FLASK_APP=api_main.py
       - FLASK_DEBUG=1
+      - PYTHONPATH=/app/backend
       - CORS_ORIGINS=http://localhost:5173,http://localhost
     restart: unless-stopped
     healthcheck:

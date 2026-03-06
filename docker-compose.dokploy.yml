@@ -7,6 +7,7 @@ services:
     environment:
       FLASK_ENV: production
       FLASK_APP: api_main.py
+      PYTHONPATH: /app/backend
       PYTHONUNBUFFERED: "1"
       CORS_ORIGINS: ${CORS_ORIGINS:-*}
     expose:
